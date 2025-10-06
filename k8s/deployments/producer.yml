@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-deployment
+  namespace: messaging # specify the namespace here once its created or use default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-pod # deployment will use this label to manage pods
+  template:
+    metadata:
+      labels:
+        app: producer-pod # use the same label as above
+    spec:
+      containers:
+        - name: producer-pod
+          image: esakkidev/kafka-producer:v1.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: KAFKA_BROKER
+              value: "kafka-service:9092" # use the service name of kafka service
+            - name: FLASK_ENV # optional, useful during development
+              value: "development"

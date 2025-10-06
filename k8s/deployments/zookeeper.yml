@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-deployment
+  namespace: messaging # specify the namespace here once its created or use default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper-pod # deployment will use this label to manage pods
+  template:
+    metadata:
+      labels:
+        app: zookeeper-pod # use the same label as above
+    spec:
+      containers:
+        - name: zookeeper-pod
+          image: confluentinc/cp-zookeeper:7.6.1
+          ports:
+            - containerPort: 2181
+          env:
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "2181"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "2000"
+            - name: ZOOKEEPER_SYNC_LIMIT
+              value: "2"

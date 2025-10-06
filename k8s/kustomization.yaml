@@ -1,0 +1,9 @@
+namespace: messaging
+resources:
+  - namespace/namespace.yaml
+  - deployments/zookeeper.yml
+  - deployments/kafka.yml
+  - deployments/producer.yml
+  - deployments/consumer.yml
+  - services/zookeeper.yml
+  - services/kafka.yml

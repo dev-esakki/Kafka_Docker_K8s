@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-service
+  namespace: messaging # specify the namespace here once its created or use default
+spec:
+  type: ClusterIP # cluster internal service communication between pods if ip needs to access beyond use nodeport or loadbalancer
+  selector:
+    app: zookeeper-pod # should match the label in deployment pod
+  ports:
+    - port: 2181
+      targetPort: 2181
