@@ -56,3 +56,21 @@ Deployment	A higher-level controller that manages pods, ensures the desired numb
 ✅ Therefore:
 You don’t need separate .pod YAML files for each service.
 Instead, use Deployment manifests, which automatically create and manage the pods for you.
+
+## K8s Kustomization
+
+```
+kubectl apply -k k8s/
+
+kubectl delete -k k8s/
+
+Get all the deployement, service and pods
+
+kubectl get all -n messaging
+kubectl get namespace
+
+
+
+```
+
+
